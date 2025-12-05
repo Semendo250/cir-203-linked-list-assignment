@@ -1,0 +1,64 @@
+
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data    # dictionary
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = new_node
+
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data)
+            temp = temp.next
+
+
+
+students = [
+    ("Douglas Semendo", "ADM001"),
+    ("Titus Semendo", "ADM002"),
+    ("Jairus Otieno", "ADM003"),
+    ("Sailas Semendo", "ADM004"),
+    ("Vincent Olumu", "ADM005")
+]
+
+subjects = ["CIM 207", "CIR 203", "CIS 221", "CIR 201", "CIT 220"]
+grades = ["A", "B", "C", "D", "E"]
+
+
+student_list = LinkedList()
+
+for name, adm in students:
+    # randomly pick 3 subjects
+    chosen_subjects = random.sample(subjects, 3)
+
+    # assign random grades
+    student_grades = {subj: random.choice(grades) for subj in chosen_subjects}
+
+    # create dictionary for each student
+    student_data = {
+        "Name": name,
+        "Admission Number": adm,
+        "Grades": student_grades
+    }
+
+    # insert into linked list
+    student_list.insert(student_data)
+
+
+student_list.display()
